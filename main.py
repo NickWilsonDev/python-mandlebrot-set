@@ -1,16 +1,38 @@
-# This is a sample Python script.
+import numpy as np
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+import matplotlib.pyplot as plt
 
+def mandelbrot(c, max_iter):
+    z = 0
+    for n in range(max_iter):
+        if abs(z) > 2:
+            return n
+        z = z * z + c
+    return max_iter
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+def mandelbrot_set(xmin, xmax, ymin, ymax, width, height, max_iter):
+    x = np.linspace(xmin, xmax, width)
+    y = np.linspace(ymin, ymax, height)
+    mset = np.zeros([height, width])
 
+    for i in range(height):
+        for j in range(width):
+            c = complex(x[j], y[i])
+            mset[i, j] = mandelbrot(c, max_iter)
+
+    return mset
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    xmin, xmax, ymin, ymax = -2.0, 1.0, -1.5, 1.5
+    width, height = 1000, 1000
+    max_iter = 100
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    mandelbrot_image = mandelbrot_set(xmin, xmax, ymin, ymax, width, height, max_iter)
+    plt.imshow(mandelbrot_image, extent=[xmin, xmax, ymin, ymax], cmap='hot')
+    plt.colorbar()
+    plt.title('Mandelbrot image')
+    plt.xlabel('Re(c)')
+    plt.ylabel('Im(c)')
+    plt.show()
+
