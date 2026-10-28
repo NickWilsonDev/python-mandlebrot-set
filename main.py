@@ -32,7 +32,7 @@ if __name__ == '__main__':
     plt.imshow(mandelbrot_image, extent=[xmin, xmax, ymin, ymax], cmap='hot')
     plt.colorbar()
     plt.title('Mandelbrot image')
-    plt.xlabel('Re(c)')
-    plt.ylabel('Im(c)')
+    plt.xlabel('Real(c)')
+    plt.ylabel('Imaginary(c)')
     plt.show()
 
