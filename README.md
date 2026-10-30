@@ -1,4 +1,4 @@
-#Using Python, Numpy, and Matplotlib to generate an image of the Mandelbrot set.
+# Using Python, Numpy, and Matplotlib to generate an image of the Mandelbrot set.
 
 
 
